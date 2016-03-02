@@ -1,11 +1,19 @@
 public class WhiteCross
 {
-   final Algorithm test = new Algorithm("LR","01");
+   final Algorithm fromBottom    = new Algorithm("FF","00");
+   final Algorithm fromLeftFix   = new Algorithm("URU", "100");
+   final Algorithm fromrightFix  = new Algorithm("ULU", "011");
+   final Algorithm fromBottomFix = new Algorithm("UFRFU", "11000");
    
    protected int[] edgeLoc = {1,3,5,7};
    protected boolean[] edgeState = {false, false, false, false};
    
-   public void checkState(Rubiks cube)
+   
+   
+   
+   
+   
+   public void checkComplete(Rubiks cube)
    {
       boolean temp = false;
       for (int k = 0; k < 4; k++)
