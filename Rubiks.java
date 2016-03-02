@@ -53,7 +53,15 @@ public class Rubiks
    public int getX(){return x;}
    public int getY(){return y;}
    public int getS(){return s;}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public Color[] getF(){return front;}
+   public Color[] getB(){return back;}   
+   public Color[] getR(){return right;}   
+   public Color[] getL(){return left;}   
+   public Color[] getU(){return top;}   
+   public Color[] getD(){return bottom;}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
    public void drawCubeNet(Graphics g)
    {
       int tempX = x;
@@ -339,7 +347,7 @@ public class Rubiks
       {
          for (k = 0; k < 9; k++)
             temp[k] = top[k];
-         swapEdge(top,  left,  3,4,5, 1,4,7);
+         swapEdge(top,  left,  3,4,5, 7,4,1);
          swapEdge(left,  bottom,   1,4,7, 3,4,5);
          swapEdge(bottom,   right,     3,4,5, 7,4,1);
          swapEdge(right,     temp,    1,4,7, 3,4,5);
@@ -390,6 +398,11 @@ public class Rubiks
    {
       Rubiks solved = new Rubiks();
       return this.equals(solved);
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public void algorithm(Algorithm alg)
+   {
+      multiAction(alg.getActions(), alg.getInverses());
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
    public void multiAction(String actions, String inverses)
