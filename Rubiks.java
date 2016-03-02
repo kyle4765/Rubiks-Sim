@@ -50,6 +50,10 @@ public class Rubiks
    public void setY(int y){this.y = y;}
    public void setS(int s){this.s = s;}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+   public void addX(int x){this.x += x;}
+   public void addY(int y){this.y += y;}
+   public void addS(int s){this.s += s;}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    public int getX(){return x;}
    public int getY(){return y;}
    public int getS(){return s;}
