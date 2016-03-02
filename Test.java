@@ -2,7 +2,7 @@ import java.awt.*;
 import java.applet.*;																
 import java.util.*;
 
-public class RubiksTest extends Applet
+public class Test extends Applet
 {
    public void paint(Graphics g)
    //public static void main(String[]args)
