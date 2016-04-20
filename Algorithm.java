@@ -1,7 +1,3 @@
-import java.awt.*;
-import java.applet.*;																
-import java.util.*;
-
 public class Algorithm
 {
    protected String actions;

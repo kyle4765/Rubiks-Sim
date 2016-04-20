@@ -362,46 +362,41 @@ public class Rubiks
    {
       this.X(inv);
       this.U(inv);
-      this.D(Math.abs(inv-1));
+      this.D(-inv + 1);
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void rotateCubeY(int inv)
    {
       this.Y(inv);
       this.R(inv);
-      this.L(Math.abs(inv-1));
+      this.L(-inv + 1);
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void rotateCubeZ(int inv)
    {
       this.Z(inv);
       this.F(inv);
-      this.B(Math.abs(inv-1));
+      this.B(-inv + 1);
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public boolean equals(Rubiks thing)
-   {
-      boolean output = true;
-      boolean wy     = true;
-      boolean bg     = true;
-      boolean ro     = true;
-      
-      for(int k = 0; k < 9; k++)
-      {
-         wy = (this.bottom[k] == thing.bottom[k]) && (this.top[k] == thing.top[k]);
-         bg = (this.front[k]  == thing.front[k])  && (this.back[k]  == thing.back[k]);
-         ro = (this.right[k]   == thing.right[k])   && (this.left[k] == thing.left[k]);
-         output = wy && bg && ro;
-         if (!output)
-            break;
-      }
-      return output;
-   }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
    public boolean isSolved()
    {
-      Rubiks solved = new Rubiks();
-      return this.equals(solved);
+      boolean output  = true;
+      boolean tempTB  = true;
+      boolean tempLR  = true;
+      boolean tempFB  = true;
+      for(int k = 0; k < 8; k++)
+      {
+    	 tempTB = (bottom[k].equals(bottom[k+1])) && (top[k].equals(top[k+1]));
+    	 tempLR = (left[k].equals(left[k+1])) && (right[k].equals(right[k+1]));
+    	 tempTB = (front[k].equals(front[k+1])) && (back[k].equals(back[k+1]));
+         if (!(tempTB && tempLR && tempFB))
+         {
+        	 output = false;
+        	 break;
+         }
+      }
+      return output;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void algorithm(Algorithm alg)
@@ -417,9 +412,14 @@ public class Rubiks
       }
       else
       {
+    	 int temp = 0;
          for (int k = 0; k < actions.length(); k++)
          {
-            singleAction(actions.substring(k,k+1), Integer.parseInt(inverses.substring(k,k+1)));
+        	if (inverses.substring(k,k+1).equals("-"))
+        		temp = 0;
+        	else
+        		temp = Integer.parseInt(inverses.substring(k,k+1));
+            singleAction(actions.substring(k,k+1), temp);
          }
       }
    }
@@ -433,8 +433,53 @@ public class Rubiks
          case "U" : this.U(inv); break;
          case "D" : this.D(inv); break;
          case "R" : this.R(inv); break;
-         case "L" : this.L(inv); break;  
+         case "L" : this.L(inv); break;
+         case "X" : this.X(inv); break;
+         case "Y" : this.Y(inv); break;
+         case "Z" : this.Z(inv); break;
+         case "-" : break;
       }
    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public void setFace(String f, String t)
+   {
+      Color front = stringToColor(f);
+      Color top   = stringToColor(t);
+      
+      boolean bg = ((f.equals("blue") && t.equals("green"))   || (t.equals("blue") && f.equals("green")));
+      boolean wy = ((f.equals("white") && t.equals("yellow")) || (t.equals("white") && f.equals("yellow")));
+      boolean ro = ((f.equals("red") && t.equals("orange"))   || (t.equals("red") && f.equals("orange")));
+      if (bg || wy || ro)
+      {
+         System.out.println("Opposite sides can not be front and top at the same time");
+      }
+      else
+      {
+         while (!(front.equals(getF()[4])))
+         {
+            rotateCubeY(0);
+            if (front.equals(getF()[4]))
+               break;
+            rotateCubeX(0);
+         }
+         while(!(top.equals(getU()[4])))
+            rotateCubeZ(0);
+      } 
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public Color stringToColor(String s)
+   {
+      Color c = new Color(0,0,0);
+      switch (s.toLowerCase())
+      {
+         case "blue"    : c = Color.blue;     break;
+         case "green"   : c = Color.green;    break;
+         case "red"     : c = Color.red;      break;
+         case "orange"  : c = Color.orange;   break;
+         case "white"   : c = Color.white;    break;
+         case "yellow"  : c = Color.yellow;   break;
+      }
+      return c;
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
