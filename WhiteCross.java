@@ -19,6 +19,7 @@ public class WhiteCross extends Solver
       solvePiece(cube, "red");
       solvePiece(cube, "green");
       solvePiece(cube, "orange");
+      System.out.println("White cross done!");
       
    }
    
@@ -85,9 +86,11 @@ public class WhiteCross extends Solver
    {
 	   cube.setFace(piece, "white"); 
 	   pieceToTop(cube, findPiece(cube, piece));
-	   while (!(cube.getF()[1].equals(cube.getF()[4])))
+	   for (int k = 0; k < 4; k++)
 	   {
 		   cube.X(0);
+		   if (cube.getF()[1].equals(cube.getF()[4]))
+			   break;
 	   }
    }
    /*

@@ -5,9 +5,9 @@ public class SecondLayer extends Solver
    final static Algorithm flip = new Algorithm("LULUFUF-U-LULUFUF", "1000011-0-1000011");
    
    final static Algorithm top    		= new Algorithm("ULULUFUF", "11000011");
-   final static Algorithm leftBack		= new Algorithm("XXLULUFUFXULULUFUF", "11000011001000011");
-   final static Algorithm rightBack    	= new Algorithm("XXLULUFUFXXULULUFUF","0010000110001000011");
-   final static Algorithm rightFront    = new Algorithm("XLULUFUFXULULUFUF", "01000011101000011");
+   final static Algorithm leftBack		= new Algorithm("X-LULUFUF-XU-LULUFUF","1-1000011-00-1000011");
+   final static Algorithm rightBack    	= new Algorithm("XX-LULUFUF-XXU-LULUFUF","00-1000011-000-1000011");
+   final static Algorithm rightFront    = new Algorithm("X-LULUFUF-XU-LULUFUF","0-1000011-10-1000011");
 
    
    public static void solve(Rubiks cube)
@@ -16,6 +16,7 @@ public class SecondLayer extends Solver
 	   solvePiece(cube, "blue", "orange");
 	   solvePiece(cube, "orange", "green");
 	   solvePiece(cube, "green", "red");
+	   System.out.println("Second layer done!");
    }
    
    public static int findPiece(Rubiks cube, String c1, String c2)

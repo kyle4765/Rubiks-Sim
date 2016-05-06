@@ -14,10 +14,9 @@ public class Test extends Applet
 	  
       Rubiks cube = new Rubiks();
       
-      cube.X(0);
-      cube.drawCubeNet(g);
+      //cube.drawCubeNet(g);
       
-      Solver.shuffleCube(cube, 1000, true, true);
+      /*Solver.shuffleCube(cube, 1000, true, true);
       cube.addY(150);
       cube.drawCubeNet(g);
       
@@ -32,6 +31,15 @@ public class Test extends Applet
       SecondLayer.solve(cube);
       cube.addY(-450);
       cube.addX(250);
-      cube.drawCubeNet(g);
+      cube.drawCubeNet(g);*/
+      System.out.println("///////////////////////////");
+      for (int k = 0; k < 4; k++)
+      {
+    	  System.out.println();
+	      Solver.shuffleCube(cube, 1000, true, true);
+	      Solver.solve(cube);
+	      cube.drawCubeNet(g);
+	      cube.addY(150);
+      }
    }
 }

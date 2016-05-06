@@ -5,6 +5,20 @@ public class Solver
 {
    final Algorithm test = new Algorithm("LR","01");
    
+   public static void solve(Rubiks cube)
+   {
+	   System.out.println("Starting solve!");
+	   WhiteCross.solve(cube);
+	   WhiteCorners.solve(cube);
+	   SecondLayer.solve(cube);
+   }
+   
+   public static void solve(Rubiks cube, int steps)
+   {
+	   // this will later be a debug method or i might crap this
+   }
+   
+   
    public static void shuffleCube(Rubiks cube, int turns, boolean middles, boolean output)
    {
       int face;

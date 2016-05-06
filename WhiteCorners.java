@@ -15,6 +15,7 @@ public class WhiteCorners extends Solver
       solvePiece(cube, "red", "green");
       solvePiece(cube, "green", "orange");
       solvePiece(cube, "orange", "blue");
+      System.out.println("White corners done!");
    }
    
    public static int findPiece(Rubiks cube, String c1, String c2)
