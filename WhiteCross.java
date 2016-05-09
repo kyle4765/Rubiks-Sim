@@ -70,8 +70,8 @@ public class WhiteCross extends Solver
 	   {
 	       case 0 : break;
 	       case 1 : cube.algorithm(topLeft); break;
-	       case 2 : cube.algorithm(topRight); break;
-	       case 3 : cube.algorithm(topBack); break;
+	       case 2 : cube.algorithm(topBack); break;
+	       case 3 : cube.algorithm(topRight); break;
 	       case 4 : cube.algorithm(frontLeft); break;
 	       case 5 : cube.algorithm(frontBottom); break;
 		   
