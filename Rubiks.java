@@ -65,6 +65,13 @@ public class Rubiks
    public Color[] getU(){return top;}   
    public Color[] getD(){return bottom;}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public Color getF(int k){return front[k];}
+   public Color getB(int k){return back[k];}   
+   public Color getR(int k){return right[k];}   
+   public Color getL(int k){return left[k];}   
+   public Color getU(int k){return top[k];}   
+   public Color getD(int k){return bottom[k];}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
    public void drawCubeNet(Graphics g)
    {
