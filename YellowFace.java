@@ -8,8 +8,7 @@ public class YellowFace extends Solver
    public static void solve(Rubiks cube)
    {
 	   cube.setFace("blue", "yellow");
-	   //while (findState(cube) != 0)
-	   for (int tries = 0; tries < 100; tries++)
+	   while (findState(cube) != 0)
 		   doAlgorithms(cube, findState(cube));
    }
    

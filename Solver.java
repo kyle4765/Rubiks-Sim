@@ -11,6 +11,9 @@ public class Solver
 	   WhiteCross.solve(cube);
 	   WhiteCorners.solve(cube);
 	   SecondLayer.solve(cube);
+	   YellowCross.solve(cube);
+	   YellowFace.solve(cube);
+	   FinalLayer.solve(cube);
    }
    
    public static void solve(Rubiks cube, int steps)
