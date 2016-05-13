@@ -1,4 +1,4 @@
-import java.awt.*;
+
 
 public class YellowCross extends Solver
 {
@@ -13,21 +13,21 @@ public class YellowCross extends Solver
    
    public static int findState(Rubiks cube)
    {
-	   if (  (cube.getU()[1].equals(Color.yellow)) && (cube.getU()[3].equals(Color.yellow)) &&
-			 (cube.getU()[5].equals(Color.yellow)) && (cube.getU()[7].equals(Color.yellow)) )
+	   if (  (cube.getU(1) == 'y') && (cube.getU(3) == 'y') &&
+			 (cube.getU(5) == 'y') && (cube.getU(7) == 'y') )
 		   return 0;
-	   if (!((cube.getU()[1].equals(Color.yellow)) || (cube.getU()[3].equals(Color.yellow)) ||
-		     (cube.getU()[5].equals(Color.yellow)) || (cube.getU()[7].equals(Color.yellow))) )
+	   if (!((cube.getU(1) == 'y') || (cube.getU(3) == 'y') ||
+		     (cube.getU(5) == 'y') || (cube.getU(7) == 'y')) )
 		   return 1;
 	   for (int k = 0; k < 4; k++)
 	   {
-		   if (cube.getU()[3].equals(Color.yellow))
+		   if (cube.getU(3) == 'y')
 		   {
-			   if(cube.getU()[1].equals(Color.yellow))
+			   if(cube.getU(1) == 'y')
 			   {
 				   return 2;
 			   }
-			   else if (cube.getU()[5].equals(Color.yellow))
+			   else if (cube.getU(5) == 'y')
 			   {
 				   return 3;
 			   }

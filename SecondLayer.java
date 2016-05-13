@@ -1,4 +1,4 @@
-import java.awt.*;
+
 
 public class SecondLayer extends Solver
 {
@@ -21,33 +21,33 @@ public class SecondLayer extends Solver
    
    public static int findPiece(Rubiks cube, String c1, String c2)
    {
-	   Color piece1 = cube.stringToColor(c1);
-	   Color piece2 = cube.stringToColor(c2);
+	   char piece1 = cube.stringToChar(c1);
+	   char piece2 = cube.stringToChar(c2);
 	   
 	   boolean ts1;
 	   boolean ts2;
 	   
-	   ts1 = cube.getF()[3].equals(piece1) && cube.getL()[5].equals(piece2);
-	   ts2 = cube.getF()[3].equals(piece2) && cube.getL()[5].equals(piece1);
+	   ts1 = cube.getF(3) == piece1 && cube.getL(5) == piece2;
+	   ts2 = cube.getF(3) == piece2 && cube.getL(5) == piece1;
 	   if (ts1 || ts2)
 		   return 0;
-	   ts1 = cube.getL()[3].equals(piece1) && cube.getB()[5].equals(piece2);
-	   ts2 = cube.getL()[3].equals(piece2) && cube.getB()[5].equals(piece1);
+	   ts1 = cube.getL(3) == piece1 && cube.getB(5) == piece2;
+	   ts2 = cube.getL(3) == piece2 && cube.getB(5) == piece1;
 	   if (ts1 || ts2)
 		   return 1;
-	   ts1 = cube.getB()[3].equals(piece1) && cube.getR()[5].equals(piece2);
-	   ts2 = cube.getB()[3].equals(piece2) && cube.getR()[5].equals(piece1);
+	   ts1 = cube.getB(3) == piece1 && cube.getR(5) == piece2;
+	   ts2 = cube.getB(3) == piece2 && cube.getR(5) == piece1;
 	   if (ts1 || ts2)
 		   return 2;
-	   ts1 = cube.getR()[3].equals(piece1) && cube.getF()[5].equals(piece2);
-	   ts2 = cube.getR()[3].equals(piece2) && cube.getF()[5].equals(piece1);
+	   ts1 = cube.getR(3) == piece1 && cube.getF(5) == piece2;
+	   ts2 = cube.getR(3) == piece2 && cube.getF(5) == piece1;
 	   if (ts1 || ts2)
 		   return 3;
 	   
 	   for (int k = 0; k < 4; k++)
 	   {
-		   ts1 = cube.getF()[1].equals(piece1) && cube.getU()[7].equals(piece2);
-		   ts2 = cube.getF()[1].equals(piece2) && cube.getU()[7].equals(piece1);
+		   ts1 = cube.getF(1) == piece1 && cube.getU(7) == piece2;
+		   ts2 = cube.getF(1) == piece2 && cube.getU(7) == piece1;
 		   if (ts1 || ts2)
 			   return 4;
 		   cube.U(0);
@@ -66,7 +66,7 @@ public class SecondLayer extends Solver
 	   		case 3 : cube.algorithm(rightFront); break;
 	   		case 4 : cube.algorithm(top); break;
 	   }
-	   if (!(cube.getF()[3].equals(cube.getF()[4])))
+	   if (!(cube.getF(3) == cube.getF(4)))
 	   {
 		   cube.algorithm(flip);
 	   }

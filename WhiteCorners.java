@@ -1,4 +1,4 @@
-import java.awt.*;
+
 
 public class WhiteCorners extends Solver
 {
@@ -20,39 +20,39 @@ public class WhiteCorners extends Solver
    
    public static int findPiece(Rubiks cube, String c1, String c2)
    {
-	   Color piece1 = cube.stringToColor(c1);
-	   Color piece2 = cube.stringToColor(c2);
+	   char piece1 = cube.stringToChar(c1);
+	   char piece2 = cube.stringToChar(c2);
 	   
 	   boolean ts1;
 	   boolean ts2;
 	   boolean ts3;
 	   
-	   ts1 = cube.getU()[6].equals(Color.white) && cube.getF()[0].equals(piece1) && cube.getL()[2].equals(piece2);
-	   ts2 = cube.getU()[6].equals(piece1) && cube.getF()[0].equals(piece2) && cube.getL()[2].equals(Color.white);
-	   ts3 = cube.getU()[6].equals(piece2) && cube.getF()[0].equals(Color.white) && cube.getL()[2].equals(piece1);
+	   ts1 = cube.getU(6) == 'w' && cube.getF(0) == piece1 && cube.getL(2) == piece2;
+	   ts2 = cube.getU(6) == piece1 && cube.getF(0) == piece2 && cube.getL(2) == 'w';
+	   ts3 = cube.getU(6) == piece2 && cube.getF(0) == 'w' && cube.getL(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 0;
-	   ts1 = cube.getU()[0].equals(Color.white) && cube.getL()[0].equals(piece1) && cube.getB()[2].equals(piece2);
-	   ts2 = cube.getU()[0].equals(piece1) && cube.getL()[0].equals(piece2) && cube.getB()[2].equals(Color.white);
-	   ts3 = cube.getU()[0].equals(piece2) && cube.getL()[0].equals(Color.white) && cube.getB()[2].equals(piece1);
+	   ts1 = cube.getU(0) == 'w' && cube.getL(0) == piece1 && cube.getB(2) == piece2;
+	   ts2 = cube.getU(0) == piece1 && cube.getL(0) == piece2 && cube.getB(2) == 'w';
+	   ts3 = cube.getU(0) == piece2 && cube.getL(0) == 'w' && cube.getB(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 1;
-	   ts1 = cube.getU()[2].equals(Color.white) && cube.getB()[0].equals(piece1) && cube.getR()[2].equals(piece2);
-	   ts2 = cube.getU()[2].equals(piece1) && cube.getB()[0].equals(piece2) && cube.getR()[2].equals(Color.white);
-	   ts3 = cube.getU()[2].equals(piece2) && cube.getB()[0].equals(Color.white) && cube.getR()[2].equals(piece1);
+	   ts1 = cube.getU(2) == 'w' && cube.getB(0) == piece1 && cube.getR(2) == piece2;
+	   ts2 = cube.getU(2) == piece1 && cube.getB(0) == piece2 && cube.getR(2) == 'w';
+	   ts3 = cube.getU(2) == piece2 && cube.getB(0) == 'w' && cube.getR(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 2;
-	   ts1 = cube.getU()[8].equals(Color.white) && cube.getR()[0].equals(piece1) && cube.getF()[2].equals(piece2);
-	   ts2 = cube.getU()[8].equals(piece1) && cube.getR()[0].equals(piece2) && cube.getF()[2].equals(Color.white);
-	   ts3 = cube.getU()[8].equals(piece2) && cube.getR()[0].equals(Color.white) && cube.getF()[2].equals(piece1);
+	   ts1 = cube.getU(8) == 'w' && cube.getR(0) == piece1 && cube.getF(2) == piece2;
+	   ts2 = cube.getU(8) == piece1 && cube.getR(0) == piece2 && cube.getF(2) == 'w';
+	   ts3 = cube.getU(8) == piece2 && cube.getR(0) == 'w' && cube.getF(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 3;
 	   
 	   for (int k = 0; k < 4; k++)
 	   {
-		   ts1 = cube.getF()[6].equals(Color.white) && cube.getD()[0].equals(piece1) && cube.getL()[8].equals(piece2);
-		   ts2 = cube.getF()[6].equals(piece1) && cube.getD()[0].equals(piece2) && cube.getL()[8].equals(Color.white);
-		   ts3 = cube.getF()[6].equals(piece2) && cube.getD()[0].equals(Color.white) && cube.getL()[8].equals(piece1);
+		   ts1 = cube.getF(6) == 'w' && cube.getD(0) == piece1 && cube.getL(8) == piece2;
+		   ts2 = cube.getF(6) == piece1 && cube.getD(0) == piece2 && cube.getL(8) == 'w';
+		   ts3 = cube.getF(6) == piece2 && cube.getD(0) == 'w' && cube.getL(8) == piece1;
 		   if (ts1 || ts2 || ts3)
 			   return 4;
 		   cube.D(0);
@@ -73,7 +73,7 @@ public class WhiteCorners extends Solver
 	       case 4 : cube.algorithm(toTopLeft); break;
 		   
 	   }
-	   while (!(cube.getU()[6].equals(Color.white)))
+	   while (!(cube.getU(6) == 'w'))
 	   {
 		   cube.algorithm(stateCycle);
 	   }

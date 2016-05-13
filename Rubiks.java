@@ -1,15 +1,14 @@
-import java.awt.*;
-import java.applet.*;																
+import java.awt.*;																
 import java.util.*;
 
 public class Rubiks
 {
-   protected Color[] back;
-   protected Color[] front;
-   protected Color[] right;
-   protected Color[] left;
-   protected Color[] top;
-   protected Color[] bottom;
+   protected char[] back;
+   protected char[] front;
+   protected char[] right;
+   protected char[] left;
+   protected char[] top;
+   protected char[] bottom;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    protected int x;
    protected int y;
@@ -17,29 +16,29 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
    public Rubiks()
    {
-      back  = new Color[9];
+      back  = new char[9];
       for (int k = 0; k < 9; k++)
-         back[k] = Color.green;
+         back[k] = 'g';
          
-      front   = new Color[9];
+      front   = new char[9];
       for (int k = 0; k < 9; k++)
-         front[k] = Color.blue;
+         front[k] = 'b';
          
-      right    = new Color[9];
+      right    = new char[9];
       for (int k = 0; k < 9; k++)
-         right[k] = Color.red;
+         right[k] = 'r';
          
-      left = new Color[9];
+      left = new char[9];
       for (int k = 0; k < 9; k++)
-         left[k] = Color.orange;
+         left[k] = 'o';
          
-      top = new Color[9];
+      top = new char[9];
       for (int k = 0; k < 9; k++)
-         top[k] = Color.yellow;
+         top[k] = 'y';
          
-      bottom  = new Color[9];   
+      bottom  = new char[9];   
       for (int k = 0; k < 9; k++)
-         bottom[k] = Color.white;
+         bottom[k] = 'w';
          
       x = 10;
       y = 10;
@@ -58,19 +57,19 @@ public class Rubiks
    public int getY(){return y;}
    public int getS(){return s;}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public Color[] getF(){return front;}
-   public Color[] getB(){return back;}   
-   public Color[] getR(){return right;}   
-   public Color[] getL(){return left;}   
-   public Color[] getU(){return top;}   
-   public Color[] getD(){return bottom;}
+   public char[] getF(){return front;}
+   public char[] getB(){return back;}   
+   public char[] getR(){return right;}   
+   public char[] getL(){return left;}   
+   public char[] getU(){return top;}   
+   public char[] getD(){return bottom;}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public Color getF(int k){return front[k];}
-   public Color getB(int k){return back[k];}   
-   public Color getR(int k){return right[k];}   
-   public Color getL(int k){return left[k];}   
-   public Color getU(int k){return top[k];}   
-   public Color getD(int k){return bottom[k];}
+   public char getF(int k){return front[k];}
+   public char getB(int k){return back[k];}   
+   public char getR(int k){return right[k];}   
+   public char getL(int k){return left[k];}   
+   public char getU(int k){return top[k];}   
+   public char getD(int k){return bottom[k];}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
    public void drawCubeNet(Graphics g)
@@ -100,27 +99,27 @@ public class Rubiks
       y = tempY;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   private void drawSide(Color[] side, Graphics g)
+   private void drawSide(char[] side, Graphics g)
    {
-      g.setColor(side[0]);
+      g.setColor(charToColor(side[0]));
       g.fillRect(x,y,s,s);
-      g.setColor(side[1]);
+      g.setColor(charToColor(side[1]));
       g.fillRect(x + s,y,s,s);
-      g.setColor(side[2]);
+      g.setColor(charToColor(side[2]));
       g.fillRect(x + 2*s,y,s,s);
       
-      g.setColor(side[3]);
+      g.setColor(charToColor(side[3]));
       g.fillRect(x,y + s,s,s);
-      g.setColor(side[4]);
+      g.setColor(charToColor(side[4]));
       g.fillRect(x + s,y + s,s,s);
-      g.setColor(side[5]);
+      g.setColor(charToColor(side[5]));
       g.fillRect(x + 2*s,y + s,s,s);
       
-      g.setColor(side[6]);
+      g.setColor(charToColor(side[6]));
       g.fillRect(x,y + 2*s,s,s);
-      g.setColor(side[7]);
+      g.setColor(charToColor(side[7]));
       g.fillRect(x + s,y + 2*s,s,s);
-      g.setColor(side[8]);
+      g.setColor(charToColor(side[8]));
       g.fillRect(x + 2*s,y + 2*s,s,s);
       
       g.setColor(Color.black);
@@ -129,18 +128,18 @@ public class Rubiks
       g.drawRect(x,y+s,3*s,s);
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   private void swapEdge(Color[] c1, Color[] c2, int c11, int c12, int c13, int c21, int c22, int c23)
+   private void swapEdge(char[] c1, char[] c2, int c11, int c12, int c13, int c21, int c22, int c23)
    {
       c1[c11] = c2[c21];
       c1[c12] = c2[c22];
       c1[c13] = c2[c23];
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   private void rotateSide(Color[] side, boolean inverse)/////////////
+   private void rotateSide(char[] side, boolean inverse)/////////////
    {
    
-      Color temp = side[0];
-      Color pmet = side[1];
+      char temp = side[0];
+      char pmet = side[1];
       if (!inverse)
       {
          side[0] = side[6];
@@ -170,7 +169,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void F(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);     
       int k;
       int j;      
@@ -192,7 +191,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    public void B(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);      
       int k;
       int j;
@@ -215,7 +214,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void R(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);      
       int k;
       int j;      
@@ -237,7 +236,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    public void L(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);      
       int k;
       int j;      
@@ -259,7 +258,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    public void U(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);
       int k;
       int j;
@@ -281,7 +280,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
    public void D(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);
       int k;
       int j;
@@ -304,7 +303,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void X(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);
       int k;
       int j;
@@ -325,7 +324,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void Y(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);
       int k;
       int j;
@@ -346,7 +345,7 @@ public class Rubiks
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void Z(int inv)
    {
-      Color[] temp = new Color[9];
+      char[] temp = new char[9];
       boolean inverse = (inv > 0);
       int k;
       int j;
@@ -394,9 +393,9 @@ public class Rubiks
       boolean tempFB  = true;
       for(int k = 0; k < 8; k++)
       {
-    	 tempTB = (bottom[k].equals(bottom[k+1])) && (top[k].equals(top[k+1]));
-    	 tempLR = (left[k].equals(left[k+1])) && (right[k].equals(right[k+1]));
-    	 tempTB = (front[k].equals(front[k+1])) && (back[k].equals(back[k+1]));
+    	 tempTB = (bottom[k] == bottom[k+1]) && (top[k]   == top[k+1]);
+    	 tempLR = (left[k]   == left[k+1])   && (right[k] == right[k+1]);
+    	 tempTB = (front[k]  == front[k+1])  && (back[k]  == back[k+1]);
          if (!(tempTB && tempLR && tempFB))
          {
         	 output = false;
@@ -422,56 +421,86 @@ public class Rubiks
     	 int temp = 0;
          for (int k = 0; k < actions.length(); k++)
          {
-        	if (inverses.substring(k,k+1).equals("-"))
+        	if (inverses.charAt(k) == '-')
         		temp = 0;
         	else
         		temp = Integer.parseInt(inverses.substring(k,k+1));
-            singleAction(actions.substring(k,k+1), temp);
+            singleAction(actions.charAt(k), temp);
          }
       }
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   public void singleAction(String action, int inv)
+   public void singleAction(char action, int inv)
    {
-      switch (action.toUpperCase().substring(0,1))
+      switch (action)
       {
-         case "F" : this.F(inv); break;
-         case "B" : this.B(inv); break;
-         case "U" : this.U(inv); break;
-         case "D" : this.D(inv); break;
-         case "R" : this.R(inv); break;
-         case "L" : this.L(inv); break;
-         case "X" : this.X(inv); break;
-         case "Y" : this.Y(inv); break;
-         case "Z" : this.Z(inv); break;
-         case "-" : break;
+         case 'F' : this.F(inv); break;
+         case 'B' : this.B(inv); break;
+         case 'U' : this.U(inv); break;
+         case 'D' : this.D(inv); break;
+         case 'R' : this.R(inv); break;
+         case 'L' : this.L(inv); break;
+         case 'X' : this.X(inv); break;
+         case 'Y' : this.Y(inv); break;
+         case 'Z' : this.Z(inv); break;
+         case '-' : break;
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void setFace(String f, String t)
    {
-      Color front = stringToColor(f);
-      Color top   = stringToColor(t);
+      char fr = stringToChar(f);
+      char to   = stringToChar(t);
       
-      boolean bg = ((f.equals("blue") && t.equals("green"))   || (t.equals("blue") && f.equals("green")));
-      boolean wy = ((f.equals("white") && t.equals("yellow")) || (t.equals("white") && f.equals("yellow")));
-      boolean ro = ((f.equals("red") && t.equals("orange"))   || (t.equals("red") && f.equals("orange")));
+      boolean bg = ((f.equals("blue")  && t.equals("green"))   || (t.equals("blue")  && f.equals("green")));
+      boolean wy = ((f.equals("white") && t.equals("yellow"))  || (t.equals("white") && f.equals("yellow")));
+      boolean ro = ((f.equals("red")   && t.equals("orange"))  || (t.equals("red")   && f.equals("orange")));
       if (bg || wy || ro)
       {
          System.out.println("Opposite sides can not be front and top at the same time");
       }
       else
       {
-         while (!(front.equals(getF()[4])))
+         while (!(fr == front[4]))
          {
             rotateCubeY(0);
-            if (front.equals(getF()[4]))
+            if (fr == front[4])
                break;
             rotateCubeX(0);
          }
-         while(!(top.equals(getU()[4])))
+         while(!(to == top[4]))
             rotateCubeZ(0);
       } 
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public char stringToChar(String s)
+   {
+      char c = ' ';
+      switch (s.toLowerCase())
+      {
+         case "blue"    : c = 'b'; break;
+         case "green"   : c = 'g'; break;
+         case "red"     : c = 'r'; break;
+         case "orange"  : c = 'o'; break;
+         case "white"   : c = 'w'; break;
+         case "yellow"  : c = 'y'; break;
+      }
+      return c;
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public Color charToColor(char cha)
+   {
+      Color c = new Color(0,0,0);
+      switch (cha)
+      {
+         case 'b' : c = Color.blue;     break;
+         case 'g' : c = Color.green;    break;
+         case 'r' : c = Color.red;      break;
+         case 'o' : c = Color.orange;   break;
+         case 'w' : c = Color.white;    break;
+         case 'y' : c = Color.yellow;   break;
+      }
+      return c;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public Color stringToColor(String s)
@@ -488,5 +517,4 @@ public class Rubiks
       }
       return c;
    }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

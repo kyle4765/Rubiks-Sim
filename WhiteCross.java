@@ -1,4 +1,4 @@
-import java.awt.*;
+
 public class WhiteCross extends Solver
 {
    final static Algorithm topFlip 		= new Algorithm("FRDRFF", "011000");
@@ -25,36 +25,36 @@ public class WhiteCross extends Solver
    
    public static int findPiece(Rubiks cube, String c)
    {
-	   Color piece = cube.stringToColor(c);
+	   char piece = cube.stringToChar(c);
 	   
 	   boolean ts1;
 	   boolean ts2;
 	   
-	   ts1 = cube.getU()[7].equals(Color.white) && cube.getF()[1].equals(piece);
-	   ts2 = cube.getU()[7].equals(piece) && cube.getF()[1].equals(Color.white);
+	   ts1 = cube.getU(7) == 'w'   && cube.getF(1) == piece;
+	   ts2 = cube.getU(7) == piece && cube.getF(1) == '1';
 	   if (ts1 || ts2)
 		   return 0;
-	   ts1 = cube.getU()[3].equals(Color.white) && cube.getL()[1].equals(piece);
-	   ts2 = cube.getU()[3].equals(piece) && cube.getL()[1].equals(Color.white);
+	   ts1 = cube.getU(3) == 'w'   && cube.getL(1) == piece;
+	   ts2 = cube.getU(3) == piece && cube.getL(1) == 'w';
 	   if (ts1 || ts2)
 		   return 1;
-	   ts1 = cube.getU()[1].equals(Color.white) && cube.getB()[1].equals(piece);
-	   ts2 = cube.getU()[1].equals(piece) && cube.getB()[1].equals(Color.white);
+	   ts1 = cube.getU(1) == 'w'   && cube.getB(1) == piece;
+	   ts2 = cube.getU(1) == piece && cube.getB(1) == 'w';
 	   if (ts1 || ts2)
 		   return 2;
-	   ts1 = cube.getU()[5].equals(Color.white) && cube.getR()[1].equals(piece);
-	   ts2 = cube.getU()[5].equals(piece) && cube.getR()[1].equals(Color.white);
+	   ts1 = cube.getU(5) == 'w'   && cube.getR(1) == piece;
+	   ts2 = cube.getU(5) == piece && cube.getR(1) == 'w';
 	   if (ts1 || ts2)
 		   return 3;
 	   
 	   for (int k = 0; k < 4; k++)
 	   {
-		   ts1 = cube.getF()[3].equals(Color.white) && cube.getL()[5].equals(piece);
-		   ts2 = cube.getF()[3].equals(piece) && cube.getL()[5].equals(Color.white);
+		   ts1 = cube.getF(3) == 'w'   && cube.getL(5) == piece;
+		   ts2 = cube.getF(3) == piece && cube.getL(5) == 'w';
 		   if (ts1 || ts2)
 			   return 4;
-		   ts1 = cube.getF()[7].equals(Color.white) && cube.getD()[1].equals(piece);
-		   ts2 = cube.getF()[7].equals(piece) && cube.getD()[1].equals(Color.white);
+		   ts1 = cube.getF(7) == 'w'   && cube.getD(1) == piece;
+		   ts2 = cube.getF(7) == piece && cube.getD(1) == 'w';
 		   if (ts1 || ts2)
 			   return 5;
 		   cube.X(0);
@@ -76,7 +76,7 @@ public class WhiteCross extends Solver
 	       case 5 : cube.algorithm(frontBottom); break;
 		   
 	   }
-	   if (!(cube.getU()[7].equals(Color.white)))
+	   if (!(cube.getU(7) == 'w'))
 	   {
 		   cube.algorithm(topFlip);
 	   }
@@ -89,7 +89,7 @@ public class WhiteCross extends Solver
 	   for (int k = 0; k < 4; k++)
 	   {
 		   cube.X(0);
-		   if (cube.getF()[1].equals(cube.getF()[4]))
+		   if (cube.getF(1) == cube.getF(4))
 			   break;
 	   }
    }

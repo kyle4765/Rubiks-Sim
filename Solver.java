@@ -1,9 +1,7 @@
-import java.awt.*;																
 import java.util.*;
 
 public class Solver
 {
-   final Algorithm test = new Algorithm("LR","01");
    
    public static void solve(Rubiks cube)
    {
@@ -53,29 +51,5 @@ public class Solver
       //System.out.println(temp);
       if (output)
          System.out.println(turns + " random turns complete.");
-   }
-
-   
-   public static boolean colorMatch(Rubiks cube, String face, String pieces)
-   {
-      Color[] side = new Color[9];
-      int x;
-      switch (face.toLowerCase())
-      {
-         case "front"   : side = cube.getF(); break;
-         case "back"    : side = cube.getB(); break;
-         case "right"   : side = cube.getR(); break;
-         case "left"    : side = cube.getL(); break;
-         case "top"     : side = cube.getU(); break;
-         case "bottom"  : side = cube.getD(); break;
-      }
-      for (int k = 0; k < pieces.length(); k++)
-      {
-         x = Integer.parseInt(pieces.substring(k,k+1));
-         if (!(side[x].equals(side[4])))
-            return false;
-            
-      }
-      return true;
    }
 }
