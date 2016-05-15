@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 
 public class SecondLayer extends Solver
 {
@@ -12,14 +12,19 @@ public class SecondLayer extends Solver
    
    public static void solve(Rubiks cube)
    {
+	   try{
 	   solvePiece(cube, "red", "blue");
 	   solvePiece(cube, "blue", "orange");
 	   solvePiece(cube, "orange", "green");
 	   solvePiece(cube, "green", "red");
+	   } catch (IOException e) {
+	   // TODO Auto-generated catch block
+	   e.printStackTrace();
+	   }
 	   System.out.println("Second layer done!");
    }
    
-   public static int findPiece(Rubiks cube, String c1, String c2)
+   public static int findPiece(Rubiks cube, String c1, String c2) throws IOException
    {
 	   char piece1 = cube.stringToChar(c1);
 	   char piece2 = cube.stringToChar(c2);
@@ -56,7 +61,7 @@ public class SecondLayer extends Solver
 	   return -1;
    }
    
-   public static void pieceToPlace(Rubiks cube, int num)
+   public static void pieceToPlace(Rubiks cube, int num) throws IOException
    {
 	   switch (num)
 	   {
@@ -72,7 +77,7 @@ public class SecondLayer extends Solver
 	   }
    }
    
-   public static void solvePiece(Rubiks cube, String piece1, String piece2)
+   public static void solvePiece(Rubiks cube, String piece1, String piece2) throws IOException
    {
 	   cube.setFace(piece1, "yellow");
 	   pieceToPlace(cube, findPiece(cube, piece1, piece2));

@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 
 public class YellowFace extends Solver
 {
@@ -7,12 +7,17 @@ public class YellowFace extends Solver
    
    public static void solve(Rubiks cube)
    {
+	   try{
 	   cube.setFace("blue", "yellow");
 	   while (findState(cube) != 0)
 		   doAlgorithms(cube, findState(cube));
+	   } catch (IOException e) {
+	   // TODO Auto-generated catch block
+	   e.printStackTrace();
+	   }
    }
    
-   public static int findState(Rubiks cube)
+   public static int findState(Rubiks cube) throws IOException
    {
 	   char y = 'y';
 	   for (int k = 0; k < 4; k++)
@@ -42,7 +47,7 @@ public class YellowFace extends Solver
 	   return -1;   
    }
    
-   public static void doAlgorithms(Rubiks cube, int state)
+   public static void doAlgorithms(Rubiks cube, int state) throws IOException
    {
 	   switch (state)
 	   {

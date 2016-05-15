@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 
 public class YellowCross extends Solver
 {
@@ -7,11 +7,16 @@ public class YellowCross extends Solver
    
    public static void solve(Rubiks cube)
    {
+	   try{
 	   cube.setFace("blue", "yellow");
 	   doAlgorithms(cube, findState(cube));
+	   } catch (IOException e) {
+	   // TODO Auto-generated catch block
+	   e.printStackTrace();
+	   }
    }
    
-   public static int findState(Rubiks cube)
+   public static int findState(Rubiks cube) throws IOException
    {
 	   if (  (cube.getU(1) == 'y') && (cube.getU(3) == 'y') &&
 			 (cube.getU(5) == 'y') && (cube.getU(7) == 'y') )
@@ -38,7 +43,7 @@ public class YellowCross extends Solver
 	   return -1;     
    }
    
-   public static void doAlgorithms(Rubiks cube, int state)
+   public static void doAlgorithms(Rubiks cube, int state) throws IOException
    {
 	   switch (state)
 	   {

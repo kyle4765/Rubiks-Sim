@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.IOException;
 
 public class Solver
 {
@@ -20,7 +21,7 @@ public class Solver
    }
    
    
-   public static void shuffleCube(Rubiks cube, int turns, boolean middles, boolean output)
+   public static void shuffleCube(Rubiks cube, int turns, boolean middles, boolean output) throws IOException
    {
       int face;
       int direction;

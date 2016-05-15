@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class FinalLayer extends Solver
 {
    final static Algorithm corners   = new Algorithm("RFRBBRFRBBRR", "101000110000");
@@ -5,13 +7,18 @@ public class FinalLayer extends Solver
    
    public static void solve(Rubiks cube)
    {
+	   try{
 	   cube.setFace("blue", "yellow");
 	   cornerAction(cube, cornerState(cube));
 	   middles(cube);
+       } catch (IOException e) {
+	   // TODO Auto-generated catch block
+	   e.printStackTrace();
+	   }
       
    }
    
-   public static int cornerState(Rubiks cube)
+   public static int cornerState(Rubiks cube) throws IOException
    {
 	   if ( (cube.getF(0) == cube.getF(2) && cube.getL(0) == cube.getL(2) &&
 			   cube.getB(0) == cube.getB(2) && cube.getR(0) == cube.getR(2)))
@@ -30,7 +37,7 @@ public class FinalLayer extends Solver
 	   
    }
    
-   public static void cornerAction(Rubiks cube, int state)
+   public static void cornerAction(Rubiks cube, int state) throws IOException
    {
 	   switch (state)
 	   {
@@ -42,7 +49,7 @@ public class FinalLayer extends Solver
 		   cube.U(0);
    }
    
-   public static void middles(Rubiks cube)
+   public static void middles(Rubiks cube) throws IOException
    {
 	   if (!( cube.getF(1) == cube.getF(4) || cube.getL(1) == cube.getL(4) ||
 			  cube.getB(1) == cube.getB(4) || cube.getR(1) == cube.getR(4)))

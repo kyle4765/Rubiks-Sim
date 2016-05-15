@@ -1,5 +1,5 @@
-import java.awt.*;																
-import java.util.*;
+import java.awt.*;
+import java.io.*;
 
 public class Rubiks
 {
@@ -13,8 +13,13 @@ public class Rubiks
    protected int x;
    protected int y;
    protected int s;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
-   public Rubiks()
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   protected File file;
+   protected FileWriter writer;
+   protected BufferedWriter buffer;
+   protected boolean recordSteps;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public Rubiks() throws IOException
    {
       back  = new char[9];
       for (int k = 0; k < 9; k++)
@@ -43,6 +48,10 @@ public class Rubiks
       x = 10;
       y = 10;
       s = 10;
+      file = new File("steps.dat");
+      writer = new FileWriter(file);
+      buffer = new BufferedWriter(writer);
+      recordSteps = false;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    public void setX(int x){this.x = x;}
@@ -167,7 +176,7 @@ public class Rubiks
 
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void F(int inv)
+   public void F(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);     
@@ -187,9 +196,15 @@ public class Rubiks
          swapEdge(right,     temp,    0,3,6,   6,7,8);
       } 
       rotateSide(front,inverse);
+      if (recordSteps)
+      {
+    	  String line = "F" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public void B(int inv)
+   public void B(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);      
@@ -209,10 +224,15 @@ public class Rubiks
          swapEdge(left,  temp,    0,3,6,   2,1,0);
       }   
       rotateSide(back,inverse);
-      
+      if (recordSteps)
+      {
+    	  String line = "B" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void R(int inv)
+   public void R(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);      
@@ -231,10 +251,16 @@ public class Rubiks
          swapEdge(bottom,   back,   8,5,2,   0,3,6);
          swapEdge(back,   temp,    0,3,6,   8,5,2);
       }
-      rotateSide(right,inverse);      
+      rotateSide(right,inverse);  
+      if (recordSteps)
+      {
+    	  String line = "R" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public void L(int inv)
+   public void L(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);      
@@ -254,9 +280,15 @@ public class Rubiks
          swapEdge(front,    temp,    0,3,6,   0,3,6);
       }
       rotateSide(left,inverse);
+      if (recordSteps)
+      {
+    	  String line = "L" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public void U(int inv)
+   public void U(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -275,10 +307,16 @@ public class Rubiks
          swapEdge(back,   left,  2,1,0,   2,1,0);
          swapEdge(left,  temp,    2,1,0,   2,1,0);
       }
-      rotateSide(top,inverse);    
+      rotateSide(top,inverse);  
+      if (recordSteps)
+      {
+    	  String line = "U" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
-   public void D(int inv)
+   public void D(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -298,10 +336,15 @@ public class Rubiks
          swapEdge(right,     temp,    6,7,8,   6,7,8);
       }
       rotateSide(bottom,inverse);
-      
+      if (recordSteps)
+      {
+    	  String line = "D" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void X(int inv)
+   public void X(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -320,9 +363,15 @@ public class Rubiks
          swapEdge(back,   left,  3,4,5, 3,4,5);
          swapEdge(left,  temp,    3,4,5, 3,4,5);
       }
+      if (recordSteps)
+      {
+    	  String line = "X" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void Y(int inv)
+   public void Y(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -341,9 +390,15 @@ public class Rubiks
          swapEdge(back,   top,  7,4,1, 1,4,7);
          swapEdge(top,  temp,    1,4,7, 1,4,7);
       }
+      if (recordSteps)
+      {
+    	  String line = "Y" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void Z(int inv)
+   public void Z(int inv) throws IOException
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -362,27 +417,60 @@ public class Rubiks
          swapEdge(bottom,   right,     3,4,5, 7,4,1);
          swapEdge(right,     temp,    1,4,7, 3,4,5);
       }
+      if (recordSteps)
+      {
+    	  String line = "Z" + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void rotateCubeX(int inv)
+   public void rotateCubeX(int inv) throws IOException
    {
+	  boolean temp = recordSteps;
+	  recordSteps = false;
       this.X(inv);
       this.U(inv);
       this.D(-inv + 1);
+      recordSteps = temp;
+      if (recordSteps)
+      {
+    	  String line = "Rotate cube X " + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void rotateCubeY(int inv)
+   public void rotateCubeY(int inv) throws IOException
    {
+	  boolean temp = recordSteps;
+	  recordSteps = false;
       this.Y(inv);
       this.R(inv);
       this.L(-inv + 1);
+      recordSteps = temp;
+      if (recordSteps)
+      {
+    	  String line = "Rotate cube Y " + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void rotateCubeZ(int inv)
+   public void rotateCubeZ(int inv) throws IOException
    {
+	  boolean temp = recordSteps;
+	  recordSteps = false;
       this.Z(inv);
       this.F(inv);
       this.B(-inv + 1);
+      recordSteps = temp;
+      if (recordSteps)
+      {
+    	  String line = "Rotate cube Z " + inv;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
    public boolean isSolved()
@@ -405,12 +493,12 @@ public class Rubiks
       return output;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void algorithm(Algorithm alg)
+   public void algorithm(Algorithm alg) throws IOException
    {
       multiAction(alg.getActions(), alg.getInverses());
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   public void multiAction(String actions, String inverses)
+   public void multiAction(String actions, String inverses) throws IOException
    {
       if (!(actions.length() == inverses.length()))
       {
@@ -430,7 +518,7 @@ public class Rubiks
       }
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   public void singleAction(char action, int inv)
+   public void singleAction(char action, int inv) throws IOException
    {
       switch (action)
       {
@@ -447,8 +535,10 @@ public class Rubiks
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void setFace(String f, String t)
+   public void setFace(String f, String t) throws IOException
    {
+	  boolean temp = recordSteps;
+	  recordSteps = false;
       char fr = stringToChar(f);
       char to   = stringToChar(t);
       
@@ -471,6 +561,13 @@ public class Rubiks
          while(!(to == top[4]))
             rotateCubeZ(0);
       } 
+      recordSteps = temp;
+      if (recordSteps)
+      {
+    	  String line = "Set front face to " + f + " and top face to " + t;
+    	  buffer.write(line);
+    	  buffer.newLine();
+      }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public char stringToChar(String s)
@@ -517,4 +614,16 @@ public class Rubiks
       }
       return c;
    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public void beginStepRecord()
+   {
+	   recordSteps = true;
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public void endStepRecord() throws IOException
+   {
+	   recordSteps = false;
+	   buffer.close();
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

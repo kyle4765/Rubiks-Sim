@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class WhiteCross extends Solver
 {
@@ -15,15 +16,20 @@ public class WhiteCross extends Solver
    
    public static void solve(Rubiks cube)
    {
+	  try{
       solvePiece(cube, "blue");
       solvePiece(cube, "red");
       solvePiece(cube, "green");
       solvePiece(cube, "orange");
+	  } catch (IOException e) {
+	  // TODO Auto-generated catch block
+	  e.printStackTrace();
+	  }
       System.out.println("White cross done!");
       
    }
    
-   public static int findPiece(Rubiks cube, String c)
+   public static int findPiece(Rubiks cube, String c) throws IOException
    {
 	   char piece = cube.stringToChar(c);
 	   
@@ -64,7 +70,7 @@ public class WhiteCross extends Solver
 	   return -1;
    }
    
-   public static void pieceToTop(Rubiks cube, int num)
+   public static void pieceToTop(Rubiks cube, int num) throws IOException
    {
 	   switch (num)
 	   {
@@ -82,7 +88,7 @@ public class WhiteCross extends Solver
 	   }
    }
    
-   public static void solvePiece(Rubiks cube, String piece)
+   public static void solvePiece(Rubiks cube, String piece) throws IOException
    {
 	   cube.setFace(piece, "white"); 
 	   pieceToTop(cube, findPiece(cube, piece));
