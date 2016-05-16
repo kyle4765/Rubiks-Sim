@@ -80,6 +80,20 @@ public class Rubiks
    public char getU(int k){return top[k];}   
    public char getD(int k){return bottom[k];}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public void setF(int k, char c){front[k] = c;}
+   public void setB(int k, char c){back[k] = c;}
+   public void setR(int k, char c){right[k] = c;}
+   public void setL(int k, char c){left[k] = c;}
+   public void setU(int k, char c){top[k] = c;}
+   public void setD(int k, char c){bottom[k] = c;}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public void setF(char[] c){if (c.length == 9) front = c;}
+   public void setB(char[] c){if (c.length == 9) back = c;}
+   public void setR(char[] c){if (c.length == 9) right = c;}
+   public void setL(char[] c){if (c.length == 9) left = c;}
+   public void setU(char[] c){if (c.length == 9) top = c;}
+   public void setD(char[] c){if (c.length == 9) bottom = c;}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
    public void drawCubeNet(Graphics g)
    {
