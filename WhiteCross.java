@@ -9,7 +9,7 @@ public class WhiteCross extends Solver
    final static Algorithm topBack 		= new Algorithm("BBDDFF", "000000");
    final static Algorithm frontLeft   	= new Algorithm("F", "0");
    final static Algorithm frontBottom 	= new Algorithm("FF", "00");
-
+   
    public static void solve(Rubiks cube)
    {
 	   try{
@@ -21,13 +21,11 @@ public class WhiteCross extends Solver
 			  e.printStackTrace();
 			  }
 		      System.out.println("White cross done!");
-      
    }
    
    public static void solve(Rubiks cube, Rubiks target)
    {
 	   try{
-		   	  target.setFace("blue", "white");
 		      solvePiece(cube, target, "blue");
 		      solvePiece(cube, target,  "red");
 		      solvePiece(cube, target, "green");
