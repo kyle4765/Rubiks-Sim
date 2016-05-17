@@ -36,6 +36,7 @@ public class WhiteCross extends Solver
 		      solvePiece(cube, target,  "red");
 		      solvePiece(cube, target, "green");
 		      solvePiece(cube, target, "orange");
+		      
 			  } catch (IOException e) {
 			  // TODO Auto-generated catch block
 			  e.printStackTrace();
@@ -103,18 +104,6 @@ public class WhiteCross extends Solver
 	   }
    }
    
-   /*public static void solvePiece(Rubiks cube, Rubiks target, String piece) throws IOException
-   {
-	   cube.setFace(piece, "white"); 
-	   pieceToTop(cube, findPiece(cube, piece));
-	   for (int k = 0; k < 4; k++)
-	   {
-		   cube.X(0);
-		   if (cube.getF(1) == cube.getF(4))
-			   break;
-	   }
-   }*/
-   
    public static void solvePiece(Rubiks cube, Rubiks target, String face) throws IOException
    {
 	   cube.setFace(face, "white"); 
@@ -127,25 +116,4 @@ public class WhiteCross extends Solver
 			   break;
 	   }
    }
-   /*
-    * set blue front
-    * search for blue
-    * do algorithm
-    * set red front
-    * search red
-    * etc
-    * 
-    * 
-    * difficulty: finding pieces when they are on the top
-    */
-   /*
-    * Piece position info:
-    * 0 : already in place
-    * 1 : top face on the left side
-    * 2 : top face on the right side
-    * 3 : top face on the back
-    * 4 : front face left side
-    * 5 : front face bottom
-    */
-   
 }
