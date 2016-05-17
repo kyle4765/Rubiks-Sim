@@ -12,10 +12,8 @@ public class WhiteCorners extends Solver
    public static void solve(Rubiks cube)
    {
 	  try{
-      solvePiece(cube, "blue", "red");
-      solvePiece(cube, "red", "green");
-      solvePiece(cube, "green", "orange");
-      solvePiece(cube, "orange", "blue");
+      Rubiks target = new Rubiks();
+      solve(cube, target);
 	  } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -23,41 +21,56 @@ public class WhiteCorners extends Solver
       System.out.println("White corners done!");
    }
    
-   public static int findPiece(Rubiks cube, String c1, String c2) throws IOException
+   public static void solve(Rubiks cube, Rubiks target)
+   {
+	  try{
+      solvePiece(cube, target, "blue");
+      solvePiece(cube, target, "red");
+      solvePiece(cube, target, "green");
+      solvePiece(cube, target, "orange");
+	  } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+	  }
+      System.out.println("White corners done!");
+   }
+   
+   public static int findPiece(Rubiks cube, String c1, String c2, String c3) throws IOException
    {
 	   char piece1 = cube.stringToChar(c1);
 	   char piece2 = cube.stringToChar(c2);
+	   char pieceT = cube.stringToChar(c3);
 	   
 	   boolean ts1;
 	   boolean ts2;
 	   boolean ts3;
 	   
-	   ts1 = cube.getU(6) == 'w' && cube.getF(0) == piece1 && cube.getL(2) == piece2;
-	   ts2 = cube.getU(6) == piece1 && cube.getF(0) == piece2 && cube.getL(2) == 'w';
-	   ts3 = cube.getU(6) == piece2 && cube.getF(0) == 'w' && cube.getL(2) == piece1;
+	   ts1 = cube.getU(6) == pieceT && cube.getF(0) == piece1 && cube.getL(2) == piece2;
+	   ts2 = cube.getU(6) == piece1 && cube.getF(0) == piece2 && cube.getL(2) == pieceT;
+	   ts3 = cube.getU(6) == piece2 && cube.getF(0) == pieceT && cube.getL(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 0;
-	   ts1 = cube.getU(0) == 'w' && cube.getL(0) == piece1 && cube.getB(2) == piece2;
-	   ts2 = cube.getU(0) == piece1 && cube.getL(0) == piece2 && cube.getB(2) == 'w';
-	   ts3 = cube.getU(0) == piece2 && cube.getL(0) == 'w' && cube.getB(2) == piece1;
+	   ts1 = cube.getU(0) == pieceT && cube.getL(0) == piece1 && cube.getB(2) == piece2;
+	   ts2 = cube.getU(0) == piece1 && cube.getL(0) == piece2 && cube.getB(2) == pieceT;
+	   ts3 = cube.getU(0) == piece2 && cube.getL(0) == pieceT && cube.getB(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 1;
-	   ts1 = cube.getU(2) == 'w' && cube.getB(0) == piece1 && cube.getR(2) == piece2;
-	   ts2 = cube.getU(2) == piece1 && cube.getB(0) == piece2 && cube.getR(2) == 'w';
-	   ts3 = cube.getU(2) == piece2 && cube.getB(0) == 'w' && cube.getR(2) == piece1;
+	   ts1 = cube.getU(2) == pieceT && cube.getB(0) == piece1 && cube.getR(2) == piece2;
+	   ts2 = cube.getU(2) == piece1 && cube.getB(0) == piece2 && cube.getR(2) == pieceT;
+	   ts3 = cube.getU(2) == piece2 && cube.getB(0) == pieceT && cube.getR(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 2;
-	   ts1 = cube.getU(8) == 'w' && cube.getR(0) == piece1 && cube.getF(2) == piece2;
-	   ts2 = cube.getU(8) == piece1 && cube.getR(0) == piece2 && cube.getF(2) == 'w';
-	   ts3 = cube.getU(8) == piece2 && cube.getR(0) == 'w' && cube.getF(2) == piece1;
+	   ts1 = cube.getU(8) == pieceT && cube.getR(0) == piece1 && cube.getF(2) == piece2;
+	   ts2 = cube.getU(8) == piece1 && cube.getR(0) == piece2 && cube.getF(2) == pieceT;
+	   ts3 = cube.getU(8) == piece2 && cube.getR(0) == pieceT && cube.getF(2) == piece1;
 	   if (ts1 || ts2 || ts3)
 		   return 3;
 	   
 	   for (int k = 0; k < 4; k++)
 	   {
-		   ts1 = cube.getF(6) == 'w' && cube.getD(0) == piece1 && cube.getL(8) == piece2;
-		   ts2 = cube.getF(6) == piece1 && cube.getD(0) == piece2 && cube.getL(8) == 'w';
-		   ts3 = cube.getF(6) == piece2 && cube.getD(0) == 'w' && cube.getL(8) == piece1;
+		   ts1 = cube.getF(6) == pieceT && cube.getD(0) == piece1 && cube.getL(8) == piece2;
+		   ts2 = cube.getF(6) == piece1 && cube.getD(0) == piece2 && cube.getL(8) == pieceT;
+		   ts3 = cube.getF(6) == piece2 && cube.getD(0) == pieceT && cube.getL(8) == piece1;
 		   if (ts1 || ts2 || ts3)
 			   return 4;
 		   cube.D(0);
@@ -67,7 +80,7 @@ public class WhiteCorners extends Solver
 	   
    }
    
-   public static void pieceToTop(Rubiks cube, int num) throws IOException
+   public static void pieceToTop(Rubiks cube, Rubiks target, int num) throws IOException
    {
 	   switch (num)
 	   {
@@ -78,28 +91,16 @@ public class WhiteCorners extends Solver
 	       case 4 : cube.algorithm(toTopLeft); break;
 		   
 	   }
-	   while (!(cube.getU(6) == 'w'))
+	   while (!(cube.getU(6) == target.getU(6)))
 	   {
 		   cube.algorithm(stateCycle);
 	   }
    }
    
-   public static void solvePiece(Rubiks cube, String piece1, String piece2) throws IOException
+   public static void solvePiece(Rubiks cube, Rubiks target, String face) throws IOException
    {
-	   cube.setFace(piece1, "white");
-	   pieceToTop(cube, findPiece(cube, piece1, piece2));
+	   cube.setFace(face, "white");
+	   target.setFace(face, "white");
+	   pieceToTop(cube, target, findPiece(cube, target.charToString(target.getF(0)), target.charToString(target.getL(2)), target.charToString(target.getU(6))));
    }
-   /*
-    * set face blue
-    * find blue red corner position
-    * put between blue red and white
-    * cycle through states until solved
-    * set face red
-    * repeat with red and green
-    * etc
-    */
-   
-   /*
-    * 
-    */
 }
