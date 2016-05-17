@@ -1,4 +1,4 @@
-import java.io.IOException;
+ import java.io.IOException;
 
 public class WhiteCross extends Solver
 {
@@ -16,51 +16,66 @@ public class WhiteCross extends Solver
    
    public static void solve(Rubiks cube)
    {
-	  try{
-      solvePiece(cube, "blue");
-      solvePiece(cube, "red");
-      solvePiece(cube, "green");
-      solvePiece(cube, "orange");
-	  } catch (IOException e) {
-	  // TODO Auto-generated catch block
-	  e.printStackTrace();
-	  }
-      System.out.println("White cross done!");
+	   try{
+		      Rubiks target = new Rubiks();
+		      solve(cube, target);
+		      
+			  } catch (IOException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+			  }
+		      System.out.println("White cross done!");
       
    }
    
-   public static int findPiece(Rubiks cube, String c) throws IOException
+   public static void solve(Rubiks cube, Rubiks target)
    {
-	   char piece = cube.stringToChar(c);
+	   try{
+		   	  target.setFace("blue", "white");
+		      solvePiece(cube, target, "blue");
+		      solvePiece(cube, target,  "red");
+		      solvePiece(cube, target, "green");
+		      solvePiece(cube, target, "orange");
+			  } catch (IOException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+			  }
+		      System.out.println("White cross done!");
+   }
+   
+   public static int findPiece(Rubiks cube, String cf, String ct) throws IOException
+   {
+	   char pieceF = cube.stringToChar(cf);
+	   char pieceT = cube.stringToChar(ct);
 	   
 	   boolean ts1;
 	   boolean ts2;
 	   
-	   ts1 = cube.getU(7) == 'w'   && cube.getF(1) == piece;
-	   ts2 = cube.getU(7) == piece && cube.getF(1) == '1';
+	   ts1 = cube.getU(7) == pieceT   && cube.getF(1) == pieceF;
+	   ts2 = cube.getU(7) == pieceF && cube.getF(1) == pieceT;
 	   if (ts1 || ts2)
 		   return 0;
-	   ts1 = cube.getU(3) == 'w'   && cube.getL(1) == piece;
-	   ts2 = cube.getU(3) == piece && cube.getL(1) == 'w';
+	   ts1 = cube.getU(3) == pieceT   && cube.getL(1) == pieceF;
+	   ts2 = cube.getU(3) == pieceF && cube.getL(1) == pieceT;
 	   if (ts1 || ts2)
 		   return 1;
-	   ts1 = cube.getU(1) == 'w'   && cube.getB(1) == piece;
-	   ts2 = cube.getU(1) == piece && cube.getB(1) == 'w';
+	   ts1 = cube.getU(1) == pieceT   && cube.getB(1) == pieceF;
+	   ts2 = cube.getU(1) == pieceF && cube.getB(1) == pieceT;
 	   if (ts1 || ts2)
 		   return 2;
-	   ts1 = cube.getU(5) == 'w'   && cube.getR(1) == piece;
-	   ts2 = cube.getU(5) == piece && cube.getR(1) == 'w';
+	   ts1 = cube.getU(5) == pieceT   && cube.getR(1) == pieceF;
+	   ts2 = cube.getU(5) == pieceF && cube.getR(1) == pieceT;
 	   if (ts1 || ts2)
 		   return 3;
 	   
 	   for (int k = 0; k < 4; k++)
 	   {
-		   ts1 = cube.getF(3) == 'w'   && cube.getL(5) == piece;
-		   ts2 = cube.getF(3) == piece && cube.getL(5) == 'w';
+		   ts1 = cube.getF(3) == pieceT   && cube.getL(5) == pieceF;
+		   ts2 = cube.getF(3) == pieceF && cube.getL(5) == pieceT;
 		   if (ts1 || ts2)
 			   return 4;
-		   ts1 = cube.getF(7) == 'w'   && cube.getD(1) == piece;
-		   ts2 = cube.getF(7) == piece && cube.getD(1) == 'w';
+		   ts1 = cube.getF(7) == pieceT   && cube.getD(1) == pieceF;
+		   ts2 = cube.getF(7) == pieceF && cube.getD(1) == pieceT;
 		   if (ts1 || ts2)
 			   return 5;
 		   cube.X(0);
@@ -70,7 +85,7 @@ public class WhiteCross extends Solver
 	   return -1;
    }
    
-   public static void pieceToTop(Rubiks cube, int num) throws IOException
+   public static void pieceToTop(Rubiks cube, Rubiks target, int num) throws IOException
    {
 	   switch (num)
 	   {
@@ -82,13 +97,13 @@ public class WhiteCross extends Solver
 	       case 5 : cube.algorithm(frontBottom); break;
 		   
 	   }
-	   if (!(cube.getU(7) == 'w'))
+	   if (!(cube.getU(7) == target.getU(7)))
 	   {
 		   cube.algorithm(topFlip);
 	   }
    }
    
-   public static void solvePiece(Rubiks cube, String piece) throws IOException
+   /*public static void solvePiece(Rubiks cube, Rubiks target, String piece) throws IOException
    {
 	   cube.setFace(piece, "white"); 
 	   pieceToTop(cube, findPiece(cube, piece));
@@ -96,6 +111,19 @@ public class WhiteCross extends Solver
 	   {
 		   cube.X(0);
 		   if (cube.getF(1) == cube.getF(4))
+			   break;
+	   }
+   }*/
+   
+   public static void solvePiece(Rubiks cube, Rubiks target, String face) throws IOException
+   {
+	   cube.setFace(face, "white"); 
+	   target.setFace(face, "white");
+	   pieceToTop(cube, target, findPiece(cube, target.charToString(target.getF(1)), target.charToString(target.getU(7)) ));
+	   for (int k = 0; k < 4; k++)
+	   {
+		   cube.X(0);
+		   if (cube.getF(4) == target.getF(4))
 			   break;
 	   }
    }

@@ -14,20 +14,50 @@ public class Test extends Applet
 
 		  this.setSize(1800, 250);
 		  Rubiks cube = new Rubiks();
-		  char[] f = {'o', 'y', 'y', 'o', 'b', 'g', 'r', 'b', 'y'};
-		  char[] b = {'b', 'y', 'w', 'w', 'g', 'o', 'o', 'w', 'b'};
-		  char[] r = {'o', 'r', 'r', 'r', 'o', 'g', 'r', 'o', 'y'};
-		  char[] l = {'b', 'w', 'g', 'w', 'r', 'y', 'o', 'y', 'g'};
-		  char[] u = {'r', 'b', 'y', 'b', 'y', 'b', 'w', 'r', 'g'};
-		  char[] d = {'w', 'o', 'g', 'g', 'w', 'g', 'w', 'r', 'b'};
+		  char[] f = {'b', 'g', 'b', 'g', 'b', 'g', 'b', 'g', 'b'};
+		  char[] b = {'g', 'b', 'g', 'b', 'g', 'b', 'g', 'b', 'g'};
+		  char[] r = {'r', 'o', 'r', 'o', 'r', 'o', 'r', 'o', 'r'};
+		  char[] l = {'o', 'r', 'o', 'r', 'o', 'r', 'o', 'r', 'o'};
+		  char[] u = {'y', 'w', 'y', 'w', 'y', 'w', 'y', 'w', 'y'};
+		  char[] d = {'w', 'y', 'w', 'y', 'w', 'y', 'w', 'y', 'w'};
 		  
-		  cube = CubeInputs.getCube(f,b,r,l,u,d);
+		  Rubiks target = CubeInputs.getCube(f,b,r,l,u,d);
+		  cube.drawCubeNet(g);
+		  WhiteCross.solve(cube,target);
 		  cube.drawCubeNet(g);
 		  
-		  /*cube.beginStepRecord();
-		  Solver.solve(cube);
-		  cube.drawCubeNet(g);
-		  cube.endStepRecord();*/
+		  /*Rubiks cube = new Rubiks();
+	      cube.drawCubeNet(g);
+	       
+	      Solver.shuffleCube(cube, 1000, true, true);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);
+	      
+	      WhiteCross.solve(cube);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);
+	      
+	      WhiteCorners.solve(cube);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);
+	      
+	      SecondLayer.solve(cube);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);
+	      
+	      YellowCross.solve(cube);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);
+	      
+	      YellowFace.solve(cube);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);
+	      
+	      FinalLayer.solve(cube);
+	      cube.addX(200);
+	      cube.drawCubeNet(g);*/
+		  
+		  
 	  
 	  
 	  

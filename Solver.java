@@ -4,8 +4,16 @@ import java.io.IOException;
 public class Solver
 {
    
-   public static void solve(Rubiks cube)
+   public static void solve(Rubiks cube) throws IOException
    {
+	   Rubiks target = new Rubiks();
+	   solve(cube, target);
+   }
+   
+   public static void solve(Rubiks cube, Rubiks target) throws IOException
+   {
+	   String f = target.getFaceFront();
+	   String t = target.getFaceTop();
 	   System.out.println("Starting solve!");
 	   WhiteCross.solve(cube);
 	   WhiteCorners.solve(cube);
@@ -13,11 +21,7 @@ public class Solver
 	   YellowCross.solve(cube);
 	   YellowFace.solve(cube);
 	   FinalLayer.solve(cube);
-   }
-   
-   public static void solve(Rubiks cube, int steps)
-   {
-	   // this will later be a debug method or i might crap this
+	   target.setFace(f, t);
    }
    
    

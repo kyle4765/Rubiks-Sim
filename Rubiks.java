@@ -599,6 +599,21 @@ public class Rubiks
       return c;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public String charToString(char c)
+   {
+      String s = "";
+      switch (c)
+      {
+         case 'b'   : s = "blue";     break;
+         case 'g'   : s = "green";    break;
+         case 'r'     : s = "red";      break;
+         case 'o'  : s = "orange";   break;
+         case 'w'   : s = "white";    break;
+         case 'y'  : s = "yellow";   break;
+      }
+      return s;
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public Color charToColor(char cha)
    {
       Color c = new Color(0,0,0);
@@ -629,6 +644,40 @@ public class Rubiks
       return c;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public String colorToString(Color c)
+   {
+      if (c.equals(Color.blue))
+    	  return "blue";
+      if (c.equals(Color.green))
+    	  return "green";
+      if (c.equals(Color.red))
+    	  return "red";
+      if (c.equals(Color.orange))
+    	  return "orange";
+      if (c.equals(Color.white))
+    	  return "white";
+      if (c.equals(Color.yellow))
+    	  return "yellow";
+      return "";
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public char colorToChar(Color c)
+   {
+      if (c.equals(Color.blue))
+    	  return 'b';
+      if (c.equals(Color.green))
+    	  return 'g';
+      if (c.equals(Color.red))
+    	  return 'r';
+      if (c.equals(Color.orange))
+    	  return 'o';
+      if (c.equals(Color.white))
+    	  return 'w';
+      if (c.equals(Color.yellow))
+    	  return 'y';
+      return ' ';
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void beginStepRecord()
    {
 	   recordSteps = true;
@@ -640,4 +689,13 @@ public class Rubiks
 	   buffer.close();
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public String getFaceTop()
+   {
+	   return charToString(top[4]);
+   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   public String getFaceFront()
+   {
+	   return charToString(front[4]);
+   }
 }
