@@ -9,11 +9,7 @@ public class WhiteCross extends Solver
    final static Algorithm topBack 		= new Algorithm("BBDDFF", "000000");
    final static Algorithm frontLeft   	= new Algorithm("F", "0");
    final static Algorithm frontBottom 	= new Algorithm("FF", "00");
-   
-   protected int[] edgeLoc = {1,3,5,7};
-   protected boolean[] edgeState = {false, false, false, false};
-   
-   
+
    public static void solve(Rubiks cube)
    {
 	   try{
