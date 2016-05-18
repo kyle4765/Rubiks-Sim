@@ -35,11 +35,8 @@ public class WhiteCorners extends Solver
       System.out.println("White corners done!");
    }
    
-   public static int findPiece(Rubiks cube, String c1, String c2, String c3) throws IOException
+   public static int findPiece(Rubiks cube, char piece1, char piece2, char pieceT) throws IOException
    {
-	   char piece1 = cube.stringToChar(c1);
-	   char piece2 = cube.stringToChar(c2);
-	   char pieceT = cube.stringToChar(c3);
 	   
 	   boolean ts1;
 	   boolean ts2;
@@ -101,6 +98,6 @@ public class WhiteCorners extends Solver
    {
 	   cube.setFace(face, "white");
 	   target.setFace(face, "white");
-	   pieceToTop(cube, target, findPiece(cube, target.charToString(target.getF(0)), target.charToString(target.getL(2)), target.charToString(target.getU(6))));
+	   pieceToTop(cube, target, findPiece(cube, target.getF(0), target.getL(2), target.getU(6)));
    }
 }
