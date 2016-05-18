@@ -13,10 +13,8 @@ public class SecondLayer extends Solver
    public static void solve(Rubiks cube)
    {
 	   try{
-	   solvePiece(cube, "red", "blue");
-	   solvePiece(cube, "blue", "orange");
-	   solvePiece(cube, "orange", "green");
-	   solvePiece(cube, "green", "red");
+	   Rubiks target = new Rubiks();
+	   solve(cube, target);
 	   } catch (IOException e) {
 	   // TODO Auto-generated catch block
 	   e.printStackTrace();
@@ -24,10 +22,22 @@ public class SecondLayer extends Solver
 	   System.out.println("Second layer done!");
    }
    
-   public static int findPiece(Rubiks cube, String c1, String c2) throws IOException
+   public static void solve(Rubiks cube, Rubiks target)
    {
-	   char piece1 = cube.stringToChar(c1);
-	   char piece2 = cube.stringToChar(c2);
+	   try{
+	   solvePiece(cube, target, "red");
+	   solvePiece(cube, target, "blue");
+	   solvePiece(cube, target, "orange");
+	   solvePiece(cube, target, "green");
+	   } catch (IOException e) {
+	   // TODO Auto-generated catch block
+	   e.printStackTrace();
+	   }
+	   System.out.println("Second layer done!");
+   }
+   
+   public static int findPiece(Rubiks cube, char piece1, char piece2) throws IOException
+   {
 	   
 	   boolean ts1;
 	   boolean ts2;
@@ -61,7 +71,7 @@ public class SecondLayer extends Solver
 	   return -1;
    }
    
-   public static void pieceToPlace(Rubiks cube, int num) throws IOException
+   public static void pieceToPlace(Rubiks cube, Rubiks target, int num) throws IOException
    {
 	   switch (num)
 	   {
@@ -71,15 +81,16 @@ public class SecondLayer extends Solver
 	   		case 3 : cube.algorithm(rightFront); break;
 	   		case 4 : cube.algorithm(top); break;
 	   }
-	   if (!(cube.getF(3) == cube.getF(4)))
+	   if (!(cube.getF(3) == target.getF(3) && cube.getL(5) == target.getL(5)) )
 	   {
 		   cube.algorithm(flip);
 	   }
    }
    
-   public static void solvePiece(Rubiks cube, String piece1, String piece2) throws IOException
+   public static void solvePiece(Rubiks cube, Rubiks target, String face) throws IOException
    {
-	   cube.setFace(piece1, "yellow");
-	   pieceToPlace(cube, findPiece(cube, piece1, piece2));
+	   cube.setFace(face, "yellow");
+	   target.setFace(face, "yellow");
+	   pieceToPlace(cube, target, findPiece(cube, target.getF(3), target.getL(5)));
    }
 }
