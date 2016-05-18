@@ -38,10 +38,8 @@ public class WhiteCross extends Solver
 		      System.out.println("White cross done!");
    }
    
-   public static int findPiece(Rubiks cube, String cf, String ct) throws IOException
+   public static int findPiece(Rubiks cube, char pieceF, char pieceT) throws IOException
    {
-	   char pieceF = cube.stringToChar(cf);
-	   char pieceT = cube.stringToChar(ct);
 	   
 	   boolean ts1;
 	   boolean ts2;
@@ -102,7 +100,7 @@ public class WhiteCross extends Solver
    {
 	   cube.setFace(face, "white"); 
 	   target.setFace(face, "white");
-	   pieceToTop(cube, target, findPiece(cube, target.charToString(target.getF(1)), target.charToString(target.getU(7)) ));
+	   pieceToTop(cube, target, findPiece(cube, target.getF(1), target.getU(7) ));
 	   for (int k = 0; k < 4; k++)
 	   {
 		   cube.X(0);
