@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.io.*;
 
+
+
 public class Rubiks
 {
    protected char[] back;
@@ -19,7 +21,7 @@ public class Rubiks
    protected BufferedWriter buffer;
    protected boolean recordSteps;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public Rubiks() throws IOException
+   public Rubiks()
    {
       back  = new char[9];
       for (int k = 0; k < 9; k++)
@@ -48,9 +50,11 @@ public class Rubiks
       x = 10;
       y = 10;
       s = 10;
+      try{
       file = new File("steps.dat");
       writer = new FileWriter(file);
       buffer = new BufferedWriter(writer);
+      }catch(IOException e){}
       recordSteps = false;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
@@ -190,7 +194,7 @@ public class Rubiks
 
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void F(int inv) throws IOException
+   public void F(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);     
@@ -213,12 +217,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "F" + inv;
+    	  try{
     	  buffer.write(line);
-    	  buffer.newLine();
+    	  buffer.newLine();}
+    	  catch(IOException e){}
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public void B(int inv) throws IOException
+   public void B(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);      
@@ -241,12 +247,15 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "B" + inv;
+    	  try{
     	  buffer.write(line);
     	  buffer.newLine();
+    	  }
+    	  catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void R(int inv) throws IOException
+   public void R(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);      
@@ -269,12 +278,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "R" + inv;
-    	  buffer.write(line);
+    	  try{buffer.write(line);
     	  buffer.newLine();
+    	  }
+    	  catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public void L(int inv) throws IOException
+   public void L(int inv)
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);      
@@ -297,12 +308,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "L" + inv;
-    	  buffer.write(line);
+    	  try{buffer.write(line);
     	  buffer.newLine();
+    	  }
+    	  catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   public void U(int inv) throws IOException
+   public void U(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -325,12 +338,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "U" + inv;
-    	  buffer.write(line);
-    	  buffer.newLine();
+    	 try{ buffer.write(line);
+    	 buffer.newLine();
+    	 }
+    	 catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
-   public void D(int inv) throws IOException
+   public void D(int inv)
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -353,12 +368,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "D" + inv;
-    	  buffer.write(line);
+    	 try{ buffer.write(line);
     	  buffer.newLine();
+    	 }
+    	 catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void X(int inv) throws IOException
+   public void X(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -380,12 +397,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "X" + inv;
-    	  buffer.write(line);
+    	  try{buffer.write(line);
     	  buffer.newLine();
+    	  }
+    	  catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void Y(int inv) throws IOException
+   public void Y(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -407,12 +426,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "Y" + inv;
-    	  buffer.write(line);
+    	  try{buffer.write(line);
     	  buffer.newLine();
+    	  }
+    	  catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void Z(int inv) throws IOException
+   public void Z(int inv) 
    {
       char[] temp = new char[9];
       boolean inverse = (inv > 0);
@@ -434,12 +455,13 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "Z" + inv;
-    	  buffer.write(line);
-    	  buffer.newLine();
+    	 try{ buffer.write(line);
+    	  buffer.newLine();}
+    	 catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void rotateCubeX(int inv) throws IOException
+   public void rotateCubeX(int inv)
    {
 	  boolean temp = recordSteps;
 	  recordSteps = false;
@@ -450,12 +472,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "Rotate cube X " + inv;
-    	  buffer.write(line);
+    	 try{ buffer.write(line);
     	  buffer.newLine();
+    	 }
+    	 catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void rotateCubeY(int inv) throws IOException
+   public void rotateCubeY(int inv) 
    {
 	  boolean temp = recordSteps;
 	  recordSteps = false;
@@ -466,12 +490,14 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "Rotate cube Y " + inv;
-    	  buffer.write(line);
+    	 try{ buffer.write(line);
     	  buffer.newLine();
+    	 }
+    	 catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void rotateCubeZ(int inv) throws IOException
+   public void rotateCubeZ(int inv)
    {
 	  boolean temp = recordSteps;
 	  recordSteps = false;
@@ -482,8 +508,9 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "Rotate cube Z " + inv;
-    	  buffer.write(line);
+    	 try{ buffer.write(line);
     	  buffer.newLine();
+    	 }catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
@@ -507,12 +534,12 @@ public class Rubiks
       return output;
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void algorithm(Algorithm alg) throws IOException
+   public void algorithm(Algorithm alg)
    {
       multiAction(alg.getActions(), alg.getInverses());
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   public void multiAction(String actions, String inverses) throws IOException
+   public void multiAction(String actions, String inverses)
    {
       if (!(actions.length() == inverses.length()))
       {
@@ -532,7 +559,7 @@ public class Rubiks
       }
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   public void singleAction(char action, int inv) throws IOException
+   public void singleAction(char action, int inv)
    {
       switch (action)
       {
@@ -549,7 +576,7 @@ public class Rubiks
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   public void setFace(String f, String t) throws IOException
+   public void setFace(String f, String t)
    {
 	  boolean temp = recordSteps;
 	  recordSteps = false;
@@ -579,8 +606,10 @@ public class Rubiks
       if (recordSteps)
       {
     	  String line = "Set front face to " + f + " and top face to " + t;
+    	  try{
     	  buffer.write(line);
     	  buffer.newLine();
+    	  }catch(IOException e){};
       }
    }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
