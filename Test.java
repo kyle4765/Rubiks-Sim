@@ -12,19 +12,44 @@ public class Test extends Applet
 	  try 
 	  {
 
-		  this.setSize(1800, 250);
+		  this.setSize(1800, 500);
 		  Rubiks cube = new Rubiks();
-		  char[] f = {'b', 'g', 'b', 'g', 'b', 'g', 'b', 'g', 'b'};
-		  char[] b = {'g', 'b', 'g', 'b', 'g', 'b', 'g', 'b', 'g'};
-		  char[] r = {'r', 'o', 'r', 'o', 'r', 'o', 'r', 'o', 'r'};
-		  char[] l = {'o', 'r', 'o', 'r', 'o', 'r', 'o', 'r', 'o'};
-		  char[] u = {'y', 'w', 'y', 'w', 'y', 'w', 'y', 'w', 'y'};
-		  char[] d = {'w', 'y', 'w', 'y', 'w', 'y', 'w', 'y', 'w'};
+		  char[] f = {'b', 'g', 'b', 'g', 'r', 'g', 'b', 'g', 'b'};
+		  char[] b = {'g', 'b', 'g', 'b', 'o', 'b', 'g', 'b', 'g'};
+		  char[] r = {'r', 'o', 'r', 'o', 'y', 'o', 'r', 'o', 'r'};
+		  char[] l = {'o', 'r', 'o', 'r', 'w', 'r', 'o', 'r', 'o'};
+		  char[] u = {'y', 'w', 'y', 'w', 'b', 'w', 'y', 'w', 'y'};
+		  char[] d = {'w', 'y', 'w', 'y', 'g', 'y', 'w', 'y', 'w'};
 		  
 		  Rubiks target = CubeInputs.getCube(f,b,r,l,u,d);
+		  
+		  target.addY(300);
+		  target.drawCubeNet(g);
 		  cube.drawCubeNet(g);
+		  
 		  WhiteCross.solve(cube,target);
+		  cube.addX(200);
 		  cube.drawCubeNet(g);
+		  
+		  WhiteCorners.solve(cube,target);
+		  cube.addX(200);
+		  cube.drawCubeNet(g);
+		  
+		  SecondLayer.solve(cube,target);
+		  cube.addX(200);
+		  cube.drawCubeNet(g);
+		  
+		  YellowCross.solve(cube,target);
+		  cube.addX(200);
+		  cube.drawCubeNet(g);
+		  
+		  //YellowFace.solve(cube,target);
+		  cube.addX(200);
+		  cube.drawCubeNet(g);
+		  
+		  //FinalLayer.solve(cube,target);
+		  //cube.addX(200);
+		  //cube.drawCubeNet(g);
 		  
 		  /*Rubiks cube = new Rubiks();
 	      cube.drawCubeNet(g);

@@ -11,13 +11,10 @@ public class WhiteCorners extends Solver
    
    public static void solve(Rubiks cube)
    {
-	  try{
       Rubiks target = new Rubiks();
       solve(cube, target);
-	  } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-	  }
+	  
+      
       System.out.println("White corners done!");
    }
    

@@ -5,15 +5,10 @@ public class YellowCross extends Solver
    final static Algorithm curve   = new Algorithm("FURURF", "000111");
    final static Algorithm line    = new Algorithm("FRURUF", "000111");
    
-   public static void solce(Rubiks cube)
+   public static void solve(Rubiks cube)
    {
-	   try{
-		   Rubiks target = new Rubiks();
-		   solve(cube,target);
-		   } catch (IOException e) {
-		   // TODO Auto-generated catch block
-		   e.printStackTrace();
-		   }
+	   Rubiks target = new Rubiks();
+	   solve(cube,target);
    }
    
    public static void solve(Rubiks cube, Rubiks target)

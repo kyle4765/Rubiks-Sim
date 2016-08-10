@@ -4,7 +4,7 @@ import java.io.IOException;
 public class Solver
 {
    
-   public static void solve(Rubiks cube) throws IOException
+   /*public static void solve(Rubiks cube) throws IOException
    {
 	   Rubiks target = new Rubiks();
 	   solve(cube, target);
@@ -22,7 +22,7 @@ public class Solver
 	   YellowFace.solve(cube);
 	   FinalLayer.solve(cube);
 	   target.setFace(f, t);
-   }
+   }*/
    
    
    public static void shuffleCube(Rubiks cube, int turns, boolean middles, boolean output) throws IOException

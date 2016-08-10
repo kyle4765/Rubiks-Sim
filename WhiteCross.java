@@ -12,15 +12,9 @@ public class WhiteCross extends Solver
    
    public static void solve(Rubiks cube)
    {
-	   try{
-		      Rubiks target = new Rubiks();
-		      solve(cube, target);
-		      
-			  } catch (IOException e) {
-			  // TODO Auto-generated catch block
-			  e.printStackTrace();
-			  }
-		      System.out.println("White cross done!");
+	      Rubiks target = new Rubiks();
+	      solve(cube, target);    
+		  System.out.println("White cross done!");
    }
    
    public static void solve(Rubiks cube, Rubiks target)
